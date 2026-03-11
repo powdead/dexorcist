@@ -1,4 +1,4 @@
-package com.powdead.dexorcist.gradle
+package io.github.powdead.dexorcist.gradle
 
 import com.android.build.api.instrumentation.AsmClassVisitorFactory
 import com.android.build.api.instrumentation.ClassContext

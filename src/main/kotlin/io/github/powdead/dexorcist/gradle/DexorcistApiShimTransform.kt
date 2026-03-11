@@ -1,4 +1,4 @@
-package com.powdead.dexorcist.gradle
+package io.github.powdead.dexorcist.gradle
 
 import com.android.build.api.instrumentation.AsmClassVisitorFactory
 import com.android.build.api.instrumentation.ClassContext
@@ -16,7 +16,8 @@ abstract class DexorcistApiShimTransform :
         ShimClassVisitor(classContext, next)
 
     override fun isInstrumentable(classData: ClassData): Boolean =
-        !classData.className.startsWith("com.powdead.dexorcist.shim.")
+        !classData.className.startsWith("com.powdead.dexorcist.shim.") &&
+            !classData.className.startsWith("io.github.powdead.dexorcist.shim.")
 }
 
 private class ShimClassVisitor(

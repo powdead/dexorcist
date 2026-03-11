@@ -1,4 +1,4 @@
-package com.powdead.dexorcist.gradle
+package io.github.powdead.dexorcist.gradle
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.ConfigurableFileCollection

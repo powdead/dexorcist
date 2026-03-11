@@ -1,4 +1,4 @@
-package com.powdead.dexorcist.gradle
+package io.github.powdead.dexorcist.gradle
 
 import com.android.build.api.artifact.ArtifactTransformationRequest
 import com.android.build.api.variant.BuiltArtifact

@@ -1,4 +1,4 @@
-package com.powdead.dexorcist.gradle
+package io.github.powdead.dexorcist.gradle
 
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property

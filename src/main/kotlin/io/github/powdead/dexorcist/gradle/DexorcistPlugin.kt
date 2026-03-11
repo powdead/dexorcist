@@ -1,4 +1,4 @@
-package com.powdead.dexorcist.gradle
+package io.github.powdead.dexorcist.gradle
 
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.instrumentation.FramesComputationMode
@@ -12,7 +12,7 @@ import java.io.File
 class DexorcistPlugin : Plugin<Project> {
 
     companion object {
-        const val VERSION = "0.2.0"
+        const val VERSION = "0.2.1"
         const val MULTIDEX_VERSION = "2.0.1"
         const val DESUGAR_VERSION = "2.0.4"
         const val SHIM_MAX_API = 17
@@ -330,12 +330,14 @@ class DexorcistPlugin : Plugin<Project> {
                 char* e = d; for (; n; n--, d++) *d = '\0'; return e;
             }
             ]==])
-            add_library(_dexorcist_shim STATIC "${'$'}{CMAKE_CURRENT_BINARY_DIR}/_dexorcist_shim.c")
-            target_compile_options(_dexorcist_shim PRIVATE -w -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0)
-            target_link_libraries(_dexorcist_shim PRIVATE dl)
-            link_libraries(_dexorcist_shim)
-            if(DEXORCIST_LEGACY_X86 AND CMAKE_ANDROID_ARCH_ABI STREQUAL "x86")
-                add_compile_options(-mstack-protector-guard=global)
+            if(NOT TARGET _dexorcist_shim)
+                add_library(_dexorcist_shim STATIC "${'$'}{CMAKE_CURRENT_BINARY_DIR}/_dexorcist_shim.c")
+                target_compile_options(_dexorcist_shim PRIVATE -w -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0)
+                target_link_libraries(_dexorcist_shim PRIVATE dl)
+                link_libraries(_dexorcist_shim)
+                if(DEXORCIST_LEGACY_X86 AND CMAKE_ANDROID_ARCH_ABI STREQUAL "x86")
+                    add_compile_options(-mstack-protector-guard=global)
+                endif()
             endif()
         """.trimIndent() + "\n")
     }
