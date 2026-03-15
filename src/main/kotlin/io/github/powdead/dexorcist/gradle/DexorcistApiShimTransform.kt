@@ -16,8 +16,7 @@ abstract class DexorcistApiShimTransform :
         ShimClassVisitor(classContext, next)
 
     override fun isInstrumentable(classData: ClassData): Boolean =
-        !classData.className.startsWith("com.powdead.dexorcist.shim.") &&
-            !classData.className.startsWith("io.github.powdead.dexorcist.shim.")
+        !classData.className.startsWith("io.github.powdead.dexorcist.shim.")
 }
 
 private class ShimClassVisitor(
@@ -64,7 +63,7 @@ private class ShimMethodVisitor(
             fun add(base: String, m: String, d: String, shim: String) {
                 val k = MK(m, d); put(k, (get(k) ?: emptyList()) + SE(base, shim, m))
             }
-            val S = "com/powdead/dexorcist/shim"
+            val S = "io/github/powdead/dexorcist/shim"
 
             // Bundle (API 12)
             add("android/os/Bundle", "getString", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "$S/BundleCompat")

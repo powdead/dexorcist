@@ -22,7 +22,7 @@ pluginManagement {
 ```groovy
 // build.gradle (root)
 plugins {
-    id 'com.powdead.dexorcist' version '0.2.0' apply false
+    id 'io.github.powdead.dexorcist' version '0.2.1' apply false
 }
 ```
 
@@ -30,7 +30,7 @@ plugins {
 // build.gradle (app)
 plugins {
     id 'com.android.application'
-    id 'com.powdead.dexorcist'
+    id 'io.github.powdead.dexorcist'
 }
 
 dexorcist {
